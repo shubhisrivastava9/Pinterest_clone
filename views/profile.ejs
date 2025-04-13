@@ -1,0 +1,105 @@
+<% include ./partials/header.ejs %>
+
+<style>
+  /* Ensuring main takes full screen minus navbar */
+  main {
+    min-height: calc(100vh - 64px); /* Assuming navbar height is 64px */
+  }
+  html, body {
+  height: 100%;
+  margin: 0;
+}
+</style>
+
+<!-- Navbar -->
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="w-full fixed top-0 left-0 z-50 bg-zinc-900 shadow-md px-6 sm:px-4 py-2 flex justify-between items-center h-16">
+  <h1 class="text-xl font-bold text-white">Pinterest</h1>
+
+  <div class="flex items-center gap-6">
+    <!-- Navigation Tabs -->
+    <a href="/profile" class="text-white text-sm font-medium hover:text-red-400 transition">Profile</a>
+    <a href="/feed" class="text-white text-sm font-medium hover:text-red-400 transition">Feed</a>
+
+    <!-- Logout Button -->
+    <form action="/logout" method="GET">
+      <button type="submit"
+        class="px-6 py-2 text-sm font-semibold tracking-wide text-white bg-red-600 rounded-full shadow-md hover:bg-red-700 hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2">
+        Logout
+      </button>
+    </form>
+  </div>
+</nav>
+
+</nav>
+
+<main class="w-full min-h-10vh] bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-700 text-white px-0 pt-20">
+
+  <form id="uploadform" hidden action="/fileupload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="image">
+  </form>
+
+  <!-- Profile Section -->
+  <section class="flex items-center justify-center  pt-8 pb-4">
+    <div class=" p-10 w-full max-w-md flex flex-col items-center gap-2 ">
+      ...
+
+      <!-- Profile Image -->
+      <div class="w-32 h-32 rounded-full overflow-hidden relative group cursor-pointer ">
+        <img  src="/images/uploads/<%= user.profileImage %>" alt="Profile Image"
+             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <!-- Hover Pencil Icon -->
+        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <div id="uploadicon" class="w-9 h-9 bg-white text-zinc-800 rounded-full flex items-center justify-center text-lg shadow">
+            <i class="ri-pencil-fill"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Name & Username -->
+      <div class="text-center space-y-1">
+        <h2 class="text-3xl font-extrabold"><%= user.name %></h2>
+        <p class="text-sm text-zinc-400">@<%= user.username %></p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col gap-4 w-full items-center">
+        <a href="/edit" class="w-44 px-6 py-3 text-white text-sm font-medium text-center rounded-full bg-blue-600 hover:bg-blue-500 transition shadow hover:shadow-blue-500/40">
+          ✏️ Edit Profile
+        </a>
+        <a href="/add-post" class="w-44 px-6 py-3 text-white text-sm font-medium text-center rounded-full bg-red-600 hover:bg-red-500 transition shadow hover:shadow-red-500/40">
+          ➕ Add a Post
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pins Section -->
+  <section class="mt-2 mb-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <% user.posts.forEach(function(post) { %>
+        <article class="bg-zinc-800 rounded-xl overflow-hidden transition-transform duration-300 hover:scale-105">
+          <div class="w-full h-36 bg-zinc-200 overflow-hidden">
+            <img src="/images/uploads/<%= post.image %>" alt="Pin Image" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <a hreh="/show/posts" class="text-lg font-semibold text-white mb-1"><%= post.title %></a>
+            <p class="text-xs text-zinc-400"><%= post.Description %></p>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+  </section>
+</main>
+
+<script>
+  document.querySelector("#uploadicon").addEventListener("click", function () {
+    document.querySelector("#uploadform input").click();
+  });
+  document.querySelector("#uploadform input").addEventListener("change", function () {
+    document.querySelector("#uploadform").submit();
+  });
+</script>
+
+<% include ./partials/footer.ejs %>

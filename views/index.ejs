@@ -1,0 +1,31 @@
+<% include ./partials/header.ejs %>
+<div class="w-full h-screen bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] flex justify-center items-center">
+
+
+<div class="container">
+    <div class="content">
+      <!--pinterest logo-->
+      <p class="header">Log in to see more</p>
+
+      <form action="/login" method="post">
+
+      <input type="text" name="username" placeholder="username" class="detail" /><br />
+      <input type="password" name="password" placeholder="Password" class="detail" />
+      <input type="submit" class="btn int" value="Login my Account">
+      </form>
+      <a href="/forgot">Forgot your password?</a>
+
+      <footer>
+        <p>
+          By continuing, you agree to Pinterest's
+          <b>Terms of Service, Privacy policy.</b>
+        </p>
+        <hr />
+        <a href="/">Not on Pinterest  yet? Sign up</a>
+      </footer>
+    </div>
+</div>
+</div>
+
+  
+<% include ./partials/footer.ejs %>
