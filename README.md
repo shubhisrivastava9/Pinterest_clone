@@ -1,119 +1,114 @@
-🎯 Pinterest Clone | MERN-Lite Stack (MongoDB, Express, Node.js, EJS)
+# 📌 Pinterest Clone — MERN-Lite Stack (MongoDB, Express, Node.js, EJS)
 
-🧰 Tech Stack
-Tech	Description
-⚙️ Node.js + Express	Backend server & routing
-🌿 MongoDB + Mongoose	NoSQL database for storing user and pin data
-🖼️ EJS	Templating engine for rendering views
-🎨 Tailwind CSS	Utility-first styling for responsive UI
-📸 Multer	Image upload middleware
-🔒 Express-Session	Secure session-based authentication
-✨ Core Features
-🔐 User Authentication
-Session-based login/logout system
+A visually appealing, fully responsive **Pinterest-style application** built using a lightweight MERN stack (without React), with server-side rendering via **EJS** and a mobile-first UI powered by **Tailwind CSS**.
 
-Secure POST logout route
+---
 
-👤 Profile Management
-Upload and display profile pictures
+## 🧰 Tech Stack
 
-Hover-based upload icon with real-time preview
+| Tech                 | Description                                      |
+|----------------------|--------------------------------------------------|
+| ⚙️ Node.js + Express | Backend server and routing                       |
+| 🌿 MongoDB + Mongoose | NoSQL database for users and pins               |
+| 🖼️ EJS               | Template engine for rendering dynamic views     |
+| 🎨 Tailwind CSS       | Utility-first CSS framework                     |
+| 📸 Multer            | Middleware for image upload                     |
+| 🔒 Express-Session   | Session-based user authentication               |
 
-📌 Pin Board
-Responsive, interactive pin grid
+---
 
-Hover zoom-in effect on pins
+## ✨ Core Features
 
-Add a new post via “➕ Add a Post” button
+### 🔐 User Authentication
+- Secure session-based login/logout
+- Protected routes and POST `/logout`
 
-Pins contain titles and metadata, stored in MongoDB
+### 👤 Profile Management
+- Upload and preview profile pictures
+- Hover-based upload icon with real-time image preview
 
-📱 Fully Responsive
-Mobile-first design
+### 📌 Pin Board
+- Responsive grid for pins with hover zoom-in effect
+- ➕ “Add a Post” feature for new pins
+- Pins contain title & metadata saved in MongoDB
 
-Built with Tailwind CSS utilities
+### 📱 Responsive UI
+- Mobile-first, fully responsive layout
+- Designed using Tailwind CSS utility classes
 
-🚀 Getting Started
-1. 📥 Clone the Repository
+---
+
+## 🚀 Getting Started
+
+### 📥 Clone the Repository
+```bashing Mongoose models. The MongoDB connection is defined in server.js:
+
+2. Install Dependencies
 bash
-Copy
-Edit
-git clone https://github.com/yourusername/pinterest-clone.git
-cd pinterest-clone
-2. 📦 Install Dependencies
-bash
-Copy
-Edit
+CopyEdit
 npm install
-3. ⚙️ Setup Environment Variables
-Create a .env file with:
-
+3. Setup Environment Variables
+Create a .env file in the root directory and add the following:
 env
-Copy
-Edit
+CopyEdit
 PORT=3000
 SESSION_SECRET=your_secret_key
 MONGODB_URI=mongodb://localhost:27017/pinterest-clone
-Replace MONGODB_URI with your MongoDB Atlas URI if you're using the cloud.
-
-4. ▶️ Start the Server
+💡 Replace the MongoDB URI with your MongoDB Atlas connection string if you're using the cloud.
+4. Start the Server
 bash
-Copy
-Edit
+CopyEdit
 npm start
-🔗 Visit: http://localhost:3000
+Visit: http://localhost:3000
 
 💾 MongoDB Integration
-User profiles, pins, and sessions are stored in MongoDB.
-
-Schema models (via Mongoose) manage data structure.
-
-Connection is established in server.js:
-
+Data is managed using Mongoose schemas. The database connection is defined in server.js as follows:
 js
-Copy
-Edit
+CopyEdit
+const mongoose = require("mongoose");
+
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log("MongoDB connected");
+}).catch((err) => {
+  console.error("MongoDB connection error:", err);
 });
-📂 Project Structure
+
+📁 Project Structure
 bash
-Copy
-Edit
-📁 pinterest-clone
-├── 📁 models
-│   ├── 📄 User.js             # Mongoose schema for users
-│   └── 📄 Pin.js              # Mongoose schema for image pins
-├── 📁 routes
-│   └── 📄 index.js            # Express routes
-├── 📁 views
-│   ├── 📁 partials
-│   │   ├── 📄 header.ejs
-│   │   └── 📄 footer.ejs
-│   ├── 📄 layout.ejs
-│   └── 📄 profile.ejs
-├── 📁 public
-│   └── 📁 images/uploads      # Uploaded images
-│   └── 📄 styles.css          # Tailwind CSS
-├── 📄 server.js
-├── 📄 package.json
-└── 📄 .env
-🖼️ File Upload — Profile & Pin Images
-Image upload handled by Multer
+CopyEdit
+pinterest-clone/
+├── models/
+│   ├── User.js             # Mongoose schema for user
+│   └── Pin.js              # Mongoose schema for pins
+├── routes/
+│   └── index.js            # Main route definitions
+├── views/
+│   ├── partials/
+│   │   ├── header.ejs
+│   │   └── footer.ejs
+│   ├── layout.ejs
+│   └── profile.ejs
+├── public/
+│   ├── images/uploads/     # Uploaded images stored here
+│   └── styles.css          # Tailwind CSS file
+├── server.js               # Main server file
+├── package.json            # Node project file
+└── .env                    # Environment variables
 
-Stored locally in /public/images/uploads
+🖼️ Image Uploads with Multer
+* Multer handles image uploads.
+* Files are stored in public/images/uploads/.
+* Upload buttons appear on hover for profile and pin images.
+* Simple and effective image handling with real-time preview capability.
 
-Triggered by hidden <input type="file"> on profile or pin creation
+🌟 Future Enhancements
+* 🏷️ Add categories and tags for pins
+* ❤️ Likes and comments on each pin
+* 📌 Save/share pins with others
+* 🔍 Global search functionality
+* 👥 Follow/unfollow other users
 
-💡 Future Enhancements
-🏷️ Categories and tags for pins
-
-❤️ Likes & comments on pins
-
-📌 Save/share pins
-
-🔍 Global search
-
-👥 Follow other users
 
