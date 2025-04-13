@@ -38,8 +38,6 @@ A visually appealing, fully responsive **Pinterest-style application** built usi
 
 ---
 
-## 🚀 Getting Started
-
 ### 📥 Clone the Repository
 ```bashing Mongoose models. The MongoDB connection is defined in server.js:
 
